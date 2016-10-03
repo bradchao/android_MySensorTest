@@ -24,9 +24,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textX = (TextView)findViewById(R.id.vX);
-        textY = (TextView)findViewById(R.id.vY);
-        textZ = (TextView)findViewById(R.id.vZ);
+        //textX = (TextView)findViewById(R.id.vX);
+//        textY = (TextView)findViewById(R.id.vY);
+//        textZ = (TextView)findViewById(R.id.vZ);
+
 
 
         smgr = (SensorManager)getSystemService(SENSOR_SERVICE);
@@ -56,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
         smgr.unregisterListener(listener);
     }
 
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        textX.setTextSize(36);
+//        Log.v("brad", textX.getWidth() + ":" + textX.getHeight());
+//    }
+
     private class MySensorListener implements SensorEventListener {
 
         @Override
@@ -66,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             vy = values[1];
             vz = values[2];
 
-            textX.setText("X: " + vx);
+//            textX.setText("X: " + vx);
 //            textY.setText("Y: " + vy);
 //            textZ.setText("Z: " + vz);
 
