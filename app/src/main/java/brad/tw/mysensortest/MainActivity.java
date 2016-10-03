@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -15,12 +16,18 @@ public class MainActivity extends AppCompatActivity {
     private SensorManager smgr;
     private Sensor sensor;
     private MySensorListener listener;
+    private TextView textX,textY, textZ;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textX = (TextView)findViewById(R.id.vX);
+        textY = (TextView)findViewById(R.id.vY);
+        textZ = (TextView)findViewById(R.id.vZ);
+
 
         smgr = (SensorManager)getSystemService(SENSOR_SERVICE);
 
@@ -53,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
+            float[] values = event.values;
+            float vx, vy, vz;
+            vx = values[0];
+            vy = values[1];
+            vz = values[2];
+
+            textX.setText("X: " + vx);
+//            textY.setText("Y: " + vy);
+//            textZ.setText("Z: " + vz);
 
         }
 
