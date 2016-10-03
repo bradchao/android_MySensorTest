@@ -17,12 +17,15 @@ public class MainActivity extends AppCompatActivity {
     private Sensor sensor;
     private MySensorListener listener;
     private TextView textX,textY, textZ;
+    private MyView myView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myView = (MyView)findViewById(R.id.myView);
 
         //textX = (TextView)findViewById(R.id.vX);
 //        textY = (TextView)findViewById(R.id.vY);
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        smgr.registerListener(listener,sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        smgr.registerListener(listener,sensor, SensorManager.SENSOR_DELAY_GAME);
 
     }
 
@@ -73,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
             vx = values[0];
             vy = values[1];
             vz = values[2];
+
+            if (myView.getViewW()>0 && myView.getViewH()>0) {
+                float myViewW = myView.getViewW(), myViewH = myView.getViewH();
+                float xrate = myViewW / (9.8f*2);
+                float yrate = myViewH / (9.8f*2) * -1;
+
+                myView.setXY(vx*xrate+myViewW/2, vy*yrate+myViewH/2);
+            }
 
 //            textX.setText("X: " + vx);
 //            textY.setText("Y: " + vy);

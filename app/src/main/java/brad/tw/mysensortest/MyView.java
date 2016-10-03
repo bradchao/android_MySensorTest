@@ -49,4 +49,13 @@ public class MyView extends View {
         canvas.drawLine(0,viewH/2,viewW,viewH/2, paintHLine);
 
     }
+
+
+    void setXY(float x, float y){
+        ballX = x; ballY = y;
+        invalidate();
+    }
+
+    float getViewW(){return viewW;}
+    float getViewH(){return viewH;}
 }
